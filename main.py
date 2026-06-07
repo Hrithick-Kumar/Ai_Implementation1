@@ -12,7 +12,7 @@ def Ask_friend(Question):
     }
     payload={
        "model":"openrouter/free",
-       "message":[{"role":"system","content":"You are Shweta.you are expert interviewer and ask questions related to programming only"},
+       "messages":[{"role":"system","content":"You are Shweta.you are expert interviewer and ask questions related to programming only"},
                   {"role":"user","content":Question}]
     }
     response=requests.post(api_url,headers=headers,json=payload)
