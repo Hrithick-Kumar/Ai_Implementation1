@@ -3,7 +3,7 @@ import streamlit as st
 st.title("AI Implementation")
 st.write("AI implementation")
 
-def Ask_friend():
+def Ask_friend(Question):
     api_url="https://openrouter.ai/api/v1/chat/completions"
     api_key=st.secrets["Chat_bot"]
     headers={
@@ -20,5 +20,5 @@ def Ask_friend():
     st.write(result)
     return result["choices"][0]["message"]["content"]
 Question=st.text_input("",value="Ask Shweta")
-answer=Ask_friend()
+answer=Ask_friend(Question)
 st.markdown(answer)
