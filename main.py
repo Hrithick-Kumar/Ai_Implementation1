@@ -18,6 +18,6 @@ def Ask_friend():
     response=requests.post(api_url,headers=headers,json=payload)
     result=response.json()
     return result["choices"][0]["message"]["content"]
-Question=st.text_input("",values="Ask Shweta")
+Question=st.text_input("",value="Ask Shweta")
 answer=Ask_friend()
 st.markdown(answer)
