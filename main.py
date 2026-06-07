@@ -31,7 +31,7 @@ def ask_ai(question):
     return result["choices"][0]["message"]["content"]
 
 
-question = st.input_text("Ask Question: ")
+question = st.text_input("Ask Question: ")
 
 answer = ask_ai(question)
 st.markdown(answer)
