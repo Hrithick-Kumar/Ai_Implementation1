@@ -35,7 +35,7 @@ async def get_neural_audio(answer) -> BytesIO:
 if st.button("Ask"):
     st.markdown(answer)
     #______voice output------
-    if Question:
+    if answer:
         with st.spinner("Synthesizing neural voice..."):
-            sound_stream = asyncio.run(get_neural_audio(text_input))
+            sound_stream = asyncio.run(get_neural_audio(answer))
             st.audio(sound_stream, format="audio/mp3", autoplay=True)
