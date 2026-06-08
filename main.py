@@ -25,7 +25,7 @@ Question=st.text_input("")
 answer=Ask_friend(Question)
 #voice function
 async def get_neural_audio(answer) -> BytesIO:
-    communicate = edge_tts.Communicate(text, "en-US-AndrewNeural")
+    communicate = edge_tts.Communicate(answer, "en-US-AndrewNeural")
     audio_buffer = BytesIO()
     async for chunk in communicate.stream():
         if chunk["type"] == "audio":
