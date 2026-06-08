@@ -21,12 +21,11 @@ def Ask_friend(Question):
     return result["choices"][0]["message"]["content"]
 Question=st.text_input("",value="Ask Shweta")
 answer=Ask_friend(Question)
-st.markdown(answer)
-
-#______voice output------
-text = "Hello! This is a cloud-based text to speech example."
-language = 'en'
-speech = gTTS(text=text, lang=language, slow=False)
-output_file = "welcome.mp3"
-speech.save(output_file)
-st.audio(output_file)
+if st.button("Ask"):
+    st.markdown(answer)
+    #______voice output------
+    language = 'en'
+    speech = gTTS(text=answer, lang=language, slow=False)
+    output_file = "welcome.mp3"
+    speech.save(output_file)
+    st.audio(output_file, autoplay=True)
