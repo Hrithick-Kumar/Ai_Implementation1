@@ -1,6 +1,8 @@
 import requests
 import streamlit as st
-from gtts import gTTS
+import edge_tts
+import asyncio
+from io import BytesIO
 st.title("AI Implementation")
 st.write("AI implementation")
 
@@ -13,7 +15,7 @@ def Ask_friend(Question):
     }
     payload={
        "model":"openrouter/free",
-       "messages":[{"role":"system","content":"You are Shweta.you are expert interviewer and ask questions related to programming only"},
+       "messages":[{"role":"system","content":"you are expert interviewer evaluate the answer of users"},
                   {"role":"user","content":Question}]
     }
     response=requests.post(api_url,headers=headers,json=payload)
@@ -21,11 +23,19 @@ def Ask_friend(Question):
     return result["choices"][0]["message"]["content"]
 Question=st.text_input("",value="Ask Shweta")
 answer=Ask_friend(Question)
+#voice function
+async def get_neural_audio(answer) -> BytesIO:
+    communicate = edge_tts.Communicate(text, "en-US-AndrewNeural")
+    audio_buffer = BytesIO()
+    async for chunk in communicate.stream():
+        if chunk["type"] == "audio":
+            audio_buffer.write(chunk["data"])
+    audio_buffer.seek(0)
+    return audio_buffer
 if st.button("Ask"):
     st.markdown(answer)
     #______voice output------
-    language = 'en'
-    speech = gTTS(text=answer, lang=language, slow=False)
-    output_file = "welcome.mp3"
-    speech.save(output_file)
-    st.audio(output_file, autoplay=True)
+    if text_input:
+        with st.spinner("Synthesizing neural voice..."):
+            sound_stream = asyncio.run(get_neural_audio(text_input))
+            st.audio(sound_stream, format="audio/mp3", autoplay=True)
