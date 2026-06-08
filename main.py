@@ -21,7 +21,7 @@ def Ask_friend(Question):
     response=requests.post(api_url,headers=headers,json=payload)
     result=response.json()
     return result["choices"][0]["message"]["content"]
-Question=st.text_input("",value="Ask Shweta")
+Question=st.text_input("")
 answer=Ask_friend(Question)
 #voice function
 async def get_neural_audio(answer) -> BytesIO:
@@ -35,7 +35,7 @@ async def get_neural_audio(answer) -> BytesIO:
 if st.button("Ask"):
     st.markdown(answer)
     #______voice output------
-    if text_input:
+    if Question:
         with st.spinner("Synthesizing neural voice..."):
             sound_stream = asyncio.run(get_neural_audio(text_input))
             st.audio(sound_stream, format="audio/mp3", autoplay=True)
