@@ -1,6 +1,5 @@
 import requests
 import streamlit as st
-import os
 from gtts import gTTS
 st.title("AI Implementation")
 st.write("AI implementation")
@@ -30,4 +29,4 @@ language = 'en'
 speech = gTTS(text=text, lang=language, slow=False)
 output_file = "welcome.mp3"
 speech.save(output_file)
-os.system(f"start {output_file}")
+st.audio(f"start {output_file}")
