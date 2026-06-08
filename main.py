@@ -11,10 +11,7 @@ st.markdown("""
         display: none !important;
     }
     </style>
-    """,
-    unsafe_transform=True, # Allows raw HTML parsing
-    unsafe_allow_html=True
-)
+    """, unsafe_allow_html=True)
 
 def Ask_friend(Question):
     api_url="https://openrouter.ai/api/v1/chat/completions"
