@@ -1,5 +1,7 @@
 import requests
 import streamlit as st
+import os
+from gtts import gTTS
 st.title("AI Implementation")
 st.write("AI implementation")
 
@@ -21,3 +23,11 @@ def Ask_friend(Question):
 Question=st.text_input("",value="Ask Shweta")
 answer=Ask_friend(Question)
 st.markdown(answer)
+
+#______voice output------
+text = "Hello! This is a cloud-based text to speech example."
+language = 'en'
+speech = gTTS(text=text, lang=language, slow=False)
+output_file = "welcome.mp3"
+speech.save(output_file)
+os.system(f"start {output_file}")
