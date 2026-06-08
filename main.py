@@ -5,8 +5,7 @@ import asyncio
 from io import BytesIO
 st.title("AI Implementation")
 st.write("AI implementation")
-st.markdown(
-    """
+st.markdown("""
     <style>
     audio {
         display: none !important;
