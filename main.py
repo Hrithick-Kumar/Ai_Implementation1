@@ -8,7 +8,7 @@ st.write("AI implementation")
 st.markdown("""
     <style>
     audio {
-        display: none !important;
+        display: none;
     }
     </style>
     """, unsafe_allow_html=True)
